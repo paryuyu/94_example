@@ -39,7 +39,7 @@ async function addComment(targetId, data) {
 
 async function findAll() {
     const articles = connect();
-    return await articles.find({}).sort("createAt", -1).toArray();
+    return await articles.find({}).sort("createAt",-1).toArray();
 }
 
 

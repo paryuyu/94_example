@@ -78,18 +78,18 @@
 
 <%array.forEach(data=>{%> 
     <div id="outline">
-        <hr>
-            <div><img src="<%=data.profileImg%>" width="50px" id="profileimg"></div>
+     
+            <div><img src="<%=data.profileImg%>" width="30px" id="profileimg"></div>
             <div><p style="margin: 0px;"><b><%=data.writer%></b></p>
             <small style="color: rgb(185, 185, 185);">@<%=data.name%></small></div>
-            <hr>
+    
             </div>
    
 
         <p><%=data.maintext%></p>
-      
+      <%if(data.url){%>
         <img src= "<%=data.url%>" id="mainImg">
-        
+    <%}%>
         <p><small style="color: grey;">글자수 <%=data.maintext.length%></small></p>
         <span>
             <button class="bt" onclick="location.href='details?id=<%=data._id.toString()%>'">상세보기</button>
@@ -111,6 +111,7 @@
                 document.querySelector("#preview").src=rst.target.result; //id값을 불러오는 것
             }
         }}
+    
 </script>
 
 </body>

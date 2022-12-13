@@ -22,15 +22,13 @@
         .outline{
             border: 1.5px rgb(182, 182, 182) solid;
             text-align: left;
-            padding: 20px;
+        
 
         }
         div{
-            margin: 15px;
+           margin: 15px;
         }
-        .main{
-            margin: 30px;
-        }
+     
         #comment{
             height: 50px;
             background-color: aliceblue;
@@ -65,7 +63,7 @@
     <img src="<%=obj.profileImg%>" class="profile">
     <p><%=obj.writer%><small style="color:rgb(188, 188, 188)">@<%=obj.name%></small>
     </p>
-    <div  class="outline" style="min-height: 500px;">
+    <div  class="outline">
     <img src="<%=obj.url%>" width="400px" class="main">
     <div class="main"><%=obj.maintext%></div>
     </div>
@@ -76,11 +74,11 @@
 
 <%if(obj.comments.length>0){%>
     <% obj.comments.forEach(elm=>{%>
-        <div class="outline"></div>
+        <div class="outline">
         <img src="<%=elm.commentImg%>" class="profile"/>
         <div><%=elm.commentName%></div>
         <div>@<%=elm.commentId%></div>
-        <div>댓글: <%=elm.comment%></div>
+        <div><%=elm.comment%></div>
         <div><small><%=elm.creatAt%></small></div>
         <%})%> 
     </div>
