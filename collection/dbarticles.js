@@ -1,9 +1,9 @@
 
 const mongodb = require("mongodb");
-const uri = "mongodb+srv://mernyuyu:wkdrnahr777@cluster0.qeg74yn.mongodb.net/test";
+const dotenv = require('dotenv');
+dotenv.config();
 
-
-
+const uri = process.env.MONGO_URI;
 function connect() {
     return new mongodb.MongoClient(uri).db("test").collection("articles");
 }

@@ -1,10 +1,10 @@
 //디비모듈만들어줘야함.
 
 const mongodb = require("mongodb");
+const dotenv = require('dotenv');
+dotenv.config();
 
-const uri = "mongodb+srv://mernyuyu:wkdrnahr777@cluster0.qeg74yn.mongodb.net/test";
-
-
+const uri = process.env.MONGO_URI;
 function connect() {
     return new mongodb.MongoClient(uri).db("test").collection("accounts");
 }

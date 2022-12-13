@@ -8,5 +8,8 @@
     "start": "npx nodemon app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
