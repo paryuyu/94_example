@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+  
+       
+    <style>
+        body{font-family: 'Noto Sans KR', sans-serif;
+        text-align: center;
+        }
+        button{
+            width: 400px;
+            height: 70px;
+            font-size: larger;
+            border: 0;
+            border-radius: 50px;
+            background-color: rgb(222, 222, 222);
+            color: rgb(126, 126, 126);
+        }
+        textarea{
+            resize: none;
+        }
+      
+        input{
+            width: 400px;
+            height: 70px;
+            font-size: larger;
+        }
+        select{
+            width: 100px;
+            height: 70px;
+            font-size: larger;
+        }
+        input{
+            border: 1px grey solids;
+        }
+    </style>
+</head>
+<body>
+    <form action="/account/signup" method="post">
+        <h2><i>회원가입을 진행해주세요.</i></h2>
+       <input type = "text" name = "id" onchange="idCheck(event)" placeholder="아이디">
+       <span style="color:red"></span>
+        <p>  
+       <input type = "password" name = "password"  placeholder="비밀번호">
+        </p>
+        <p>
+         <input type = "text" name = "name"  placeholder="이름">
+        </p>
+        <p>
+         <input type = "email" name = "mail"  placeholder="메일주소">
+        </p>
+        <p>
+            <input type = "text" name = "contact"  placeholder="연락처">
+        </p>
+        <p>
+       생년월일을 입력해주세요.
+       </p>
+       <p>
+            <select name="year">
+                <%for (let year=2022; year>1930; year--){%>
+                <option ><%= year%></option>
+                <%}%>
+                </select>
+            <select name="mon">
+                <%for (let mon=1; mon<13; mon++){%>
+                <option ><%= mon%></option>
+                <%}%>
+            </select>
+            <select name="day">
+                <%for (let day=1; day<32; day++){%>
+                <option ><%= day%></option>
+                <%}%>
+            </select>
+        </p>
+        <button type="submit">등록</button>
+        <script>
+
+            async function idCheck(evt){
+                let value = evt.target.value;
+                console.log("밸류값:",value)
+
+                let response = await fetch(`/api/account/idcheck?id=${value}`,{method:"get"});
+
+                let result =await response.json(); 
+               
+                if(result.success){
+                evt.target.nextElementSibling.innerHTML = "이미 사용중인 아이디입니다."
+                }else{
+                evt.target.nextElementSibling.innerHTML = "사용가능한 아이디입니다."
+                }
+            }
+
+
+
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </form>
+</body>
+</html>

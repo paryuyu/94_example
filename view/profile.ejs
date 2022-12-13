@@ -1,0 +1,37 @@
+
+
+
+<html>
+<head>
+    <tilte>사진바꾸기</tilte>
+</head>
+<body>
+<div>
+<div>
+    <img src="<%=user.image??'/profile/default.png'%>" style="width: 180px" id="image">
+</div>
+<form action="/user/profile" method="post" enctype="multipart/form-data">
+    <input type="file" name="profile" accept="image/*" onchange="preview(event);"/>
+    <button type ="submit">적용</button>
+<!--/user/profile[get]일때 렌더링-->
+</form>
+<script>
+    //프로필사진 미리보기설정
+    function preview(evt){
+        if(evt.target.files && evt.target.files[0]){
+            console.log(evt.target.files[0])
+            let reader = new FileReader(); //브라우저 host객체
+
+            reader.readAsDataURL(evt.target.files[0]);
+            reader.onload=function(rst){
+                console.log(rst.target.result)
+                document.querySelector("#image").src=rst.target.result; //id값을 불러오는 것
+            }
+        }
+    }
+</script>
+
+</div>
+</body>
+
+</html>

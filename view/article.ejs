@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #mainImg{
+            border-radius: 10px;
+            border: 5px white solid;
+            width: 200px;
+            min-height: 200px;
+        }
+        textarea{
+            width: 1000px;
+            height: 100px;
+            font-size: small;
+            resize: none;
+            font-family: 'Nanum Gothic', sans-serif;
+            border:1px rgb(225, 225, 225) solid;
+            margin: 30px;
+        }
+        textarea:focus{
+        outline: none
+        }
+        #profileimg{
+            border-radius: 50px;
+            border:4px rgb(255, 255, 255) solid;
+        }
+        #button{
+            background-color: rgb(219, 232, 241);
+            border-radius: 50px;
+            border: 0px;
+            width: 80px;
+            height: 30px;
+            color: rgb(92, 92, 92);
+        }
+        .bt{
+            background-color: rgba(255, 255, 255, 0.986);
+            border-radius: 50px;
+            border: 1px grey solid;
+            width: 90px;
+            height: 30px;
+            color: rgb(92, 92, 92);
+        }
+        body{
+           color: rgba(0, 69, 158, 0.63);
+           font-size: 15px;
+           font-family: 'Nanum Gothic', sans-serif;
+        }
+        #outline{
+            background-color: aliceblue;
+        }
+        #outline >div {
+            display: inline-block;
+        }
+      
+    </style>
+    <title>커뮤니티 메인페이지</title>
+</head>
+<body>
+    
+    <div>
+    <img src="" style="width: 180px" id="preview">
+    </div>
+    <form action="/article/upload" method="post" enctype="multipart/form-data">
+    <p>
+    <textarea name="maintext" placeholder="What's happening?"></textarea>
+    </p>
+    <input type="file" name="Img" id="file" accept="image/*" onchange="preview(event)">
+    <label><input type="checkbox" name="check" value="private" checked>비공개</label>
+    <button type="submit" id="button">등록하기</button>
+
+</form>
+
+<%array.forEach(data=>{%> 
+    <div id="outline">
+        <hr>
+            <div><img src="<%=data.profileImg%>" width="50px" id="profileimg"></div>
+            <div><p style="margin: 0px;"><b><%=data.writer%></b></p>
+            <small style="color: rgb(185, 185, 185);">@<%=data.name%></small></div>
+            <hr>
+            </div>
+   
+
+        <p><%=data.maintext%></p>
+      
+        <img src= "<%=data.url%>" id="mainImg">
+        
+        <p><small style="color: grey;">글자수 <%=data.maintext.length%></small></p>
+        <span>
+            <button class="bt" onclick="location.href='details?id=<%=data._id.toString()%>'">상세보기</button>
+         </span>
+        </div>
+   
+<%})%>
+
+
+<script>
+    function preview(evt){
+        if(evt.target.files && evt.target.files[0]){
+            console.log(evt.target.files[0])
+            let reader = new FileReader(); //브라우저 host객체
+
+            reader.readAsDataURL(evt.target.files[0]);
+            reader.onload=function(rst){
+                console.log(rst.target.result)
+                document.querySelector("#preview").src=rst.target.result; //id값을 불러오는 것
+            }
+        }}
+</script>
+
+</body>
+</html>

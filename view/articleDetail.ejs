@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: 'Nanum Gothic', sans-serif;
+            color: rgba(0, 69, 158, 0.63);
+            margin: 60px;
+            text-align: center;
+        }
+        .profile{
+            border-radius: 50px;
+            width: 50px;
+           
+        }
+        .outline{
+            border: 1.5px rgb(182, 182, 182) solid;
+            text-align: left;
+            padding: 20px;
+
+        }
+        div{
+            margin: 15px;
+        }
+        .main{
+            margin: 30px;
+        }
+        #comment{
+            height: 50px;
+            background-color: aliceblue;
+            border-radius: 50px;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 15px;
+            color: rgb(73, 73, 73);
+            padding-left: 70px;
+            width: 500px;
+            border:0
+        }
+        #bt{
+            width: 1000px;
+            height: 50px;
+            background-color: rgb(131, 131, 131);
+            border-radius: 50px;
+            border: 1px rgb(251, 251, 251) solid;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 15px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+    <title>Detail</title>
+</head>
+<body>
+
+<div id="txt">
+    <h1 style="color: rgb(79, 79, 79);">Detail Page</h1>
+
+    <img src="<%=obj.profileImg%>" class="profile">
+    <p><%=obj.writer%><small style="color:rgb(188, 188, 188)">@<%=obj.name%></small>
+    </p>
+    <div  class="outline" style="min-height: 500px;">
+    <img src="<%=obj.url%>" width="400px" class="main">
+    <div class="main"><%=obj.maintext%></div>
+    </div>
+    <input type="hidden" id="targetid" value="<%=obj._id.toString()%>">
+    <input type="text" onchange="commentSubmit(event)" placeholder="댓글을 남겨보세요." name="comment"  id="comment">
+</div>
+
+
+<%if(obj.comments.length>0){%>
+    <% obj.comments.forEach(elm=>{%>
+        <div class="outline"></div>
+        <img src="<%=elm.commentImg%>" class="profile"/>
+        <div><%=elm.commentName%></div>
+        <div>@<%=elm.commentId%></div>
+        <div>댓글: <%=elm.comment%></div>
+        <div><small><%=elm.creatAt%></small></div>
+        <%})%> 
+    </div>
+<%}%>
+
+
+<script>
+//문서에서 코멘트 아이디 값을 불러와주고,
+async function commentSubmit(evt){
+    let comment = evt.target.value;
+    let targetid=document.querySelector("#targetid").value
+   
+    console.log("comment=",comment);
+
+    const data={
+        comment: comment,
+        targetid: targetid
+    }
+
+    let response = await fetch("/api/details/comment",
+
+    {method:"post", 
+    body: JSON.stringify(data),
+    headers :{"Content-type":"application/json"}
+    });
+
+    let result = await response.json();
+
+
+
+    //div요소를 생성해주기.
+    const newDiv = document.createElement("div");
+    //let txt = document.createTextNode(result.comment);
+    newDiv.classList.add("outline")
+    newDiv.innerHTML=
+        `
+        <div><img src="${result.commentImg}" class="profile"/></div>
+        <div>${result.commentName}</div>
+        <div>@${result.commentId}</div>
+        <div>댓글:${result.comment}</div>
+        <div><small>${result.creatAt}</small></div>
+        `
+    document.querySelector("#txt").appendChild(newDiv)
+
+
+
+
+
+}
+
+//지금 작성한거 출력해주기.
+</script>
+
+</body>
+</html>
