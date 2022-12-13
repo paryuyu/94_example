@@ -40,7 +40,10 @@ const session = require("express-session");
 const app = express();
 const path = require("path");
 
-const uri = "mongodb+srv://mernyuyu:wkdrnahr777@cluster0.qeg74yn.mongodb.net/test"
+const dotenv = require("dotenv");
+dotenv.config();
+
+const uri = process.env.MONGO_URI;
 //몽고디비에서 가져온 url
 
 
@@ -52,14 +55,16 @@ app.set("views", path.join(__dirname, "view"));
 
 
 app.use(express.static(path.join(__dirname, "static"))); //스태틱 설정
-app.use(session({secret:"P@sww0rd", //필수설정 -> 비밀키
-resave : true, //요청이 왔을 때 세션에 수정사항이 생기지 않더라도 세션을 다시 저장할지 설정
-saveUninitialized : true})); //세션에 저장할 내역이 없더라도 세션을 저장할지 설정(쿠키)
+app.use(session({
+  secret: "P@sww0rd", //필수설정 -> 비밀키
+  resave: true, //요청이 왔을 때 세션에 수정사항이 생기지 않더라도 세션을 다시 저장할지 설정
+  saveUninitialized: true
+})); //세션에 저장할 내역이 없더라도 세션을 저장할지 설정(쿠키)
 
 
-app.get("/",(req,res)=>{
-  
-  res.render("home",{})
+app.get("/", (req, res) => {
+
+  res.render("home", {})
 })
 //라우터파일들 불러와주는 미들웨어
 //url경로, 리콰이어(파일경로) -> exports해준 라우터 파일을 불러와야함.
@@ -68,4 +73,4 @@ app.use("/user", require("./router/userRoute"));
 app.use("/article", require("./router/articleRoute"));
 app.use("/api", require("./router/apiRoute"));
 
-app.listen(8080,()=>{console.log("server start")})
+app.listen(8080, () => { console.log("server start") })

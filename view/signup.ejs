@@ -38,29 +38,33 @@
             font-size: larger;
         }
         input{
-            border: 1px grey solids;
+            border: 2px grey solid;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <form action="/account/signup" method="post">
-        <h2><i>회원가입을 진행해주세요.</i></h2>
+        <h2>회원가입</h2>
+        <div style="display:flex; flex-direction: column; align-items: center;">
        <input type = "text" name = "id" onchange="idCheck(event)" placeholder="아이디">
-       <span style="color:red"></span>
-        <p>  
+       <div style="color:red; text-align: left;"></div>
+        </div>
+       
+       <p> 비밀번호 </p>
        <input type = "password" name = "password"  placeholder="비밀번호">
-        </p>
-        <p>
+      
+        <p>이름</p>
          <input type = "text" name = "name"  placeholder="이름">
-        </p>
-        <p>
+        
+        <p>이메일 </p>
          <input type = "email" name = "mail"  placeholder="메일주소">
-        </p>
-        <p>
+      
+        <p>연락처</p>
             <input type = "text" name = "contact"  placeholder="연락처">
-        </p>
+        
         <p>
-       생년월일을 입력해주세요.
+       생년월일
        </p>
        <p>
             <select name="year">

@@ -12,7 +12,11 @@
             font-family: 'Nanum Gothic', sans-serif;
             color: rgb(81, 123, 156);
             text-align: center;
-            margin: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+            
         }
         button{
             width: 400px;
@@ -24,14 +28,18 @@
             color: rgb(126, 126, 126);
         }
         div{
-            margin: 30px;
+
             width: 700px;
         }
         h1{
+            padding: 10px;
             background-color: rgb(81, 123, 156);
-            padding: 50px;
             border-radius: 50px;
             color: white;
+        }
+        .button{
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
     <title>home</title>
@@ -39,17 +47,18 @@
 <body>
     <div>
         <h1>커뮤니티에 오신걸 환영합니다.</h1>
-        
     </div>
     <div>
         <img src="/private-chat.png" width="300px">
     </div>
     <div>회원만 이용가능한 커뮤니티입니다. 이용을 원하시면 회원가입 후 로그인 해주시길 바랍니다.</div>
-    <div>
-    <a href="/account/signin"><button>로그인으로 바로가기</button></a>
+
+    <div >
+    <a href="/account/signin" ><button class="button">로그인으로 바로가기</button></a>
     </div>
+
     <div>
-    <a href="/account/signup"><button>회원가입으로 바로가기</button></a>
+    <a href="/account/signup"><button class="button">회원가입으로 바로가기</button></a>
     </div>
 </body>
 </html>
