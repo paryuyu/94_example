@@ -1,10 +1,6 @@
 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a9388c34-b03e-4b70-95d6-200f4f44e173/Untitled.png)
-
-
-
-
+![Untitled](https://user-images.githubusercontent.com/107971288/208018326-98466229-2a57-4ac7-b4d7-6009c990f46a.png)
 
 
 
