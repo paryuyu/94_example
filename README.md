@@ -1,8 +1,5 @@
 
-
-![Untitled](https://user-images.githubusercontent.com/107971288/208018326-98466229-2a57-4ac7-b4d7-6009c990f46a.png)
-
-
+<img src=https://user-images.githubusercontent.com/107971288/208018326-98466229-2a57-4ac7-b4d7-6009c990f46a.png width=300px;/>
 
 > 소개
 
